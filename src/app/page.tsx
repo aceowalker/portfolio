@@ -183,7 +183,7 @@ function Hero() {
           >
             現場経営者が
             <br />
-            つくるAI。
+            つくるAI
           </h1>
 
           <p
@@ -517,7 +517,7 @@ function WorkCard2() {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   const screenshots = [
-    { src: "/bakery_adviser_001.jpg", alt: "機能一覧",    zoomable: false },
+    { src: "/bakery_adviser_001.jpg", alt: "機能一覧",    zoomable: true },
     { src: "/bakery_adviser_02.jpg",  alt: "メイン画面",   zoomable: true },
     { src: "/bakery_adviser_03.jpg",  alt: "AIアドバイス例", zoomable: true },
   ];
