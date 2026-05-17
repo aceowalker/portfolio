@@ -36,9 +36,9 @@ function Navbar() {
   }, []);
 
   const links = [
-    { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Works", href: "#works" },
+    { label: "Profile", href: "#profile" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -46,16 +46,17 @@ function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled ? "rgba(3,10,20,0.9)" : "transparent",
+        background: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(184,134,78,0.15)" : "none",
+        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06)" : "none",
       }}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a
           href="#"
           className="text-xl tracking-widest"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: "#F0EBE3", fontWeight: 300 }}
+          style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1C1916", fontWeight: 300 }}
         >
           Ayumu Ota
         </a>
@@ -69,11 +70,11 @@ function Navbar() {
               className="text-sm tracking-widest transition-colors duration-200"
               style={{
                 fontFamily: "'DM Mono', monospace",
-                color: "#8A8178",
+                color: "#6B6158",
                 fontSize: "0.75rem",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#B8864E")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8178")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#6B6158")}
             >
               {l.label}
             </a>
@@ -111,14 +112,14 @@ function Navbar() {
       {menuOpen && (
         <div
           className="md:hidden px-6 pb-6 flex flex-col gap-4"
-          style={{ background: "rgba(3,10,20,0.96)", borderTop: "1px solid rgba(184,134,78,0.15)" }}
+          style={{ background: "rgba(255,255,255,0.98)", borderTop: "1px solid rgba(184,134,78,0.15)" }}
         >
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
               className="text-sm tracking-widest"
-              style={{ fontFamily: "'DM Mono', monospace", color: "#8A8178" }}
+              style={{ fontFamily: "'DM Mono', monospace", color: "#6B6158" }}
               onClick={() => setMenuOpen(false)}
             >
               {l.label}
@@ -142,14 +143,21 @@ function Hero() {
   const hidden = "opacity-0 translate-y-6";
   const shown = "opacity-100 translate-y-0";
 
+  const sections = [
+    { num: "01", label: "Skills", sub: "スキル・対応内容", href: "#skills" },
+    { num: "02", label: "Works", sub: "制作実績", href: "#works" },
+    { num: "03", label: "Profile", sub: "経歴・プロフィール", href: "#profile" },
+    { num: "04", label: "Contact", sub: "お問い合わせ", href: "#contact" },
+  ];
+
   return (
     <section
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: "transparent" }}
     >
-      <div className="max-w-6xl mx-auto px-6 w-full pt-24 pb-16 grid md:grid-cols-2 gap-12 items-center">
-        {/* Text */}
-        <div className="flex flex-col gap-6">
+      <div className="max-w-5xl mx-auto px-6 w-full pt-24 pb-16 flex flex-col items-center gap-20">
+        {/* Main headline */}
+        <div className="flex flex-col items-center gap-6 text-center">
           <p
             className={`${base} ${mounted ? shown : hidden} text-xs tracking-[0.25em] uppercase`}
             style={{
@@ -168,7 +176,7 @@ function Hero() {
               fontSize: "clamp(3rem, 7vw, 5.5rem)",
               fontWeight: 300,
               lineHeight: 1.1,
-              color: "#F0EBE3",
+              color: "#1C1916",
               letterSpacing: "0.02em",
               transitionDelay: "150ms",
             }}
@@ -183,7 +191,7 @@ function Hero() {
             style={{
               fontFamily: "'Noto Sans JP', sans-serif",
               fontSize: "0.9rem",
-              color: "#8A8178",
+              color: "#6B6158",
               maxWidth: "480px",
               transitionDelay: "300ms",
             }}
@@ -220,124 +228,81 @@ function Hero() {
           </div>
         </div>
 
-        {/* Photo */}
+        {/* Contents index */}
         <div
-          className={`${base} ${mounted ? shown : hidden} flex justify-center md:justify-end`}
-          style={{ transitionDelay: "200ms" }}
+          className={`${base} ${mounted ? shown : hidden} w-full`}
+          style={{ transitionDelay: "600ms" }}
         >
-          <div
-            className="relative overflow-hidden"
-            style={{
-              clipPath: "polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%)",
-              width: "min(400px, 90vw)",
-              aspectRatio: "3/4",
-            }}
+          <p
+            className="text-center text-xs tracking-[0.2em] uppercase mb-6"
+            style={{ fontFamily: "'DM Mono', monospace", color: "#B8864E" }}
           >
-            <Image
-              src="/portfolio_profile.png"
-              alt="Ayumu Ota"
-              fill
-              className="object-cover object-top"
-              priority
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to bottom, transparent 60%, rgba(10,9,8,0.6) 100%)",
-              }}
-            />
+            — Contents —
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {sections.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                className="flex flex-col gap-2 p-5 transition-all duration-300"
+                style={{
+                  background: "white",
+                  border: "1px solid rgba(184,134,78,0.2)",
+                  borderRadius: "4px",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "rgba(184,134,78,0.6)";
+                  el.style.boxShadow = "0 4px 20px rgba(184,134,78,0.14)";
+                  el.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "rgba(184,134,78,0.2)";
+                  el.style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)";
+                  el.style.transform = "translateY(0)";
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'DM Mono', monospace",
+                    fontSize: "0.7rem",
+                    color: "#B8864E",
+                    letterSpacing: "0.1em",
+                  }}
+                >
+                  {s.num}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "1.3rem",
+                    fontWeight: 400,
+                    color: "#1C1916",
+                    letterSpacing: "0.03em",
+                  }}
+                >
+                  {s.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Noto Sans JP', sans-serif",
+                    fontSize: "0.75rem",
+                    color: "#6B6158",
+                  }}
+                >
+                  {s.sub}
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Bottom divider */}
       <div className="gold-divider absolute bottom-0 left-0 right-0" />
-    </section>
-  );
-}
-
-/* ─── About ─── */
-function About() {
-  const ref = useFadeIn();
-
-  return (
-    <section id="about" style={{ background: "transparent" }}>
-      <div className="gold-divider" />
-      <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-        <div ref={ref} className="fade-in grid md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
-          <div className="flex flex-col gap-6">
-            <h2 className="section-heading">
-              Ab<span>out</span>
-            </h2>
-            <div
-              className="flex flex-col gap-4 leading-relaxed"
-              style={{ color: "#D4C5B0", fontSize: "0.95rem" }}
-            >
-              <p>
-                岐阜県岐阜市で石窯パン工房Demainを2012年より経営。
-              </p>
-              <p style={{ color: "#8A8178" }}>
-                現場経営者として
-                「現場で本当に使えるAIツール」を自分の手で作ることを決意。
-              </p>
-              <p style={{ color: "#8A8178" }}>
-                DMM生成AIエンジニアコース及びRootAIスクールでAIについて学び、
-                RAGシステム・LP制作・画像生成・業務自動化ツールをメインに
-                AIフリーランスとして活動開始。
-              </p>
-              <p
-                className="pt-2 text-sm tracking-wide"
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  color: "#B8864E",
-                  borderLeft: "2px solid #B8864E",
-                  paddingLeft: "1rem",
-                }}
-              >
-                「技術と現場の両方を知っている」ことが最大の強みです。
-              </p>
-            </div>
-          </div>
-
-          {/* Badge */}
-          <div className="flex flex-col items-center gap-4">
-            <a
-              href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/unAcquired/anMvM3NKUnBWTkl3NmttWWdNdkcvdz09"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block transition-all duration-300"
-              style={{ width: "min(280px, 80vw)" }}
-            >
-              <div
-                className="overflow-hidden transition-all duration-300"
-                style={{ borderRadius: "8px", border: "1px solid rgba(184,134,78,0.2)" }}
-              >
-                <Image
-                  src="/openbadge.jpg"
-                  alt="DMM 生成AIエンジニアスクール修了バッジ"
-                  width={280}
-                  height={280}
-                  className="w-full h-auto object-cover transition-all duration-300 group-hover:scale-105"
-                  style={{}}
-                />
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
-                  style={{ boxShadow: "0 0 30px rgba(184,134,78,0.4)" }}
-                />
-              </div>
-            </a>
-            <p
-              className="text-center text-sm"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#8A8178" }}
-            >
-              DMM 生成AIエンジニアスクール修了
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="gold-divider" />
     </section>
   );
 }
@@ -383,11 +348,11 @@ function SkillCard({ icon, title, body }: { icon: string; title: string; body: s
     <div
       className="p-6 flex flex-col gap-4 transition-all duration-300 cursor-default"
       style={{
-        background: "rgba(5,12,28,0.58)",
-        backdropFilter: "blur(10px)",
+        background: "white",
         border: hovered ? "1px solid rgba(184,134,78,0.6)" : "1px solid rgba(184,134,78,0.15)",
         borderRadius: "4px",
-        boxShadow: hovered ? "0 0 20px rgba(184,134,78,0.1)" : "none",
+        boxShadow: hovered ? "0 4px 24px rgba(184,134,78,0.12)" : "0 2px 8px rgba(0,0,0,0.04)",
+        transform: hovered ? "translateY(-2px)" : "none",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -398,7 +363,7 @@ function SkillCard({ icon, title, body }: { icon: string; title: string; body: s
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: "1.25rem",
           fontWeight: 400,
-          color: "#F0EBE3",
+          color: "#1C1916",
           letterSpacing: "0.03em",
         }}
       >
@@ -406,7 +371,7 @@ function SkillCard({ icon, title, body }: { icon: string; title: string; body: s
       </h3>
       <p
         className="text-sm leading-relaxed whitespace-pre-line"
-        style={{ color: "#8A8178" }}
+        style={{ color: "#6B6158" }}
       >
         {body}
       </p>
@@ -446,12 +411,11 @@ function WorkCard1() {
       ref={ref}
       className="fade-in transition-all duration-300"
       style={{
-        background: "rgba(5,12,28,0.58)",
-        backdropFilter: "blur(10px)",
+        background: "white",
         border: "1px solid rgba(184,134,78,0.15)",
         borderRadius: "4px",
         transform: hovered ? "translateY(-4px)" : "none",
-        boxShadow: hovered ? "0 8px 32px rgba(184,134,78,0.08)" : "none",
+        boxShadow: hovered ? "0 8px 32px rgba(184,134,78,0.12)" : "0 2px 12px rgba(0,0,0,0.06)",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -476,7 +440,7 @@ function WorkCard1() {
                 className="text-xs px-2 py-1 tracking-widest"
                 style={{
                   fontFamily: "'DM Mono', monospace",
-                  background: "rgba(184,134,78,0.1)",
+                  background: "rgba(184,134,78,0.08)",
                   border: "1px solid rgba(184,134,78,0.3)",
                   color: "#B8864E",
                   borderRadius: "2px",
@@ -492,17 +456,17 @@ function WorkCard1() {
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "1.6rem",
               fontWeight: 400,
-              color: "#F0EBE3",
+              color: "#1C1916",
             }}
           >
             ベーカリー専用 AI チャットボット
           </h3>
 
-          <p className="text-sm leading-relaxed" style={{ color: "#8A8178" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "#6B6158" }}>
             自店のメニュー・アレルゲン・店舗情報をナレッジ化し、顧客からの問い合わせに24時間自動回答するRAGシステム。自社HPに実装し、現在稼働中。
           </p>
 
-          <div className="flex flex-col gap-2 text-sm" style={{ color: "#D4C5B0" }}>
+          <div className="flex flex-col gap-2 text-sm" style={{ color: "#4A4440" }}>
             <p>
               <span style={{ color: "#B8864E" }}>Before: </span>
               電話・SNSでの問い合わせ対応に時間・スタッフ不在時の対応遅延・繰り返し対応の非効率
@@ -515,7 +479,7 @@ function WorkCard1() {
 
           <p
             className="text-xs"
-            style={{ fontFamily: "'DM Mono', monospace", color: "#8A8178" }}
+            style={{ fontFamily: "'DM Mono', monospace", color: "#6B6158" }}
           >
             Python / LangChain / OpenAI API / Streamlit / Wix
           </p>
@@ -550,18 +514,77 @@ function WorkCard1() {
 function WorkCard2() {
   const ref = useFadeIn();
   const [hovered, setHovered] = useState(false);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+
+  const screenshots = [
+    { src: "/bakery_adviser_001.jpg", alt: "機能一覧",    zoomable: false },
+    { src: "/bakery_adviser_02.jpg",  alt: "メイン画面",   zoomable: true },
+    { src: "/bakery_adviser_03.jpg",  alt: "AIアドバイス例", zoomable: true },
+  ];
 
   return (
+    <>
+      {/* Lightbox */}
+      {lightboxSrc && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.88)", backdropFilter: "blur(6px)" }}
+          onClick={() => setLightboxSrc(null)}
+        >
+          <div
+            className="relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={lightboxSrc}
+              alt="拡大表示"
+              width={1400}
+              height={900}
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+                width: "auto",
+                height: "auto",
+                display: "block",
+                borderRadius: "4px",
+              }}
+            />
+            <button
+              onClick={() => setLightboxSrc(null)}
+              style={{
+                position: "absolute",
+                top: "-14px",
+                right: "-14px",
+                width: "28px",
+                height: "28px",
+                borderRadius: "50%",
+                background: "#B8864E",
+                color: "white",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "1rem",
+                lineHeight: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              aria-label="閉じる"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
     <div
       ref={ref}
       className="fade-in transition-all duration-300"
       style={{
-        background: "rgba(5,12,28,0.58)",
-        backdropFilter: "blur(10px)",
+        background: "white",
         border: "1px solid rgba(184,134,78,0.15)",
         borderRadius: "4px",
         transform: hovered ? "translateY(-4px)" : "none",
-        boxShadow: hovered ? "0 8px 32px rgba(184,134,78,0.08)" : "none",
+        boxShadow: hovered ? "0 8px 32px rgba(184,134,78,0.12)" : "0 2px 12px rgba(0,0,0,0.06)",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -574,8 +597,54 @@ function WorkCard2() {
           muted
           playsInline
           className="w-full"
-          style={{ display: "block", maxHeight: "70vh", background: "#000" }}
+          style={{ display: "block", maxHeight: "70vh", background: "#F0EAE0" }}
         />
+      </div>
+
+      {/* Screenshot gallery */}
+      <div
+        className="grid grid-cols-3 gap-0"
+        style={{ borderTop: "1px solid rgba(184,134,78,0.1)" }}
+      >
+        {screenshots.map((img, i) => (
+          <div
+            key={i}
+            className="relative overflow-hidden"
+            style={{
+              height: "220px",
+              background: "#F8F5F0",
+              borderRight: i < 2 ? "1px solid rgba(184,134,78,0.1)" : "none",
+              cursor: img.zoomable ? "zoom-in" : "default",
+            }}
+            onClick={() => img.zoomable && setLightboxSrc(img.src)}
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              style={{ objectFit: "contain", objectPosition: "center top" }}
+            />
+            {img.zoomable && (
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "6px",
+                  right: "6px",
+                  background: "rgba(184,134,78,0.85)",
+                  color: "white",
+                  fontSize: "0.6rem",
+                  padding: "2px 6px",
+                  borderRadius: "2px",
+                  fontFamily: "'DM Mono', monospace",
+                  letterSpacing: "0.05em",
+                  pointerEvents: "none",
+                }}
+              >
+                クリックで拡大
+              </div>
+            )}
+          </div>
+        ))}
       </div>
 
       {/* Text */}
@@ -587,7 +656,7 @@ function WorkCard2() {
               className="text-xs px-2 py-1 tracking-widest"
               style={{
                 fontFamily: "'DM Mono', monospace",
-                background: "rgba(184,134,78,0.1)",
+                background: "rgba(184,134,78,0.08)",
                 border: "1px solid rgba(184,134,78,0.3)",
                 color: "#B8864E",
                 borderRadius: "2px",
@@ -603,7 +672,7 @@ function WorkCard2() {
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "1.6rem",
             fontWeight: 400,
-            color: "#F0EBE3",
+            color: "#1C1916",
           }}
         >
           パン屋の売上分析を自動化する
@@ -611,11 +680,11 @@ function WorkCard2() {
           AI コンサルティングツール
         </h3>
 
-        <p className="text-sm leading-relaxed" style={{ color: "#8A8178" }}>
+        <p className="text-sm leading-relaxed" style={{ color: "#6B6158" }}>
           売上データをアップロードするだけで、AIが商品分析・改善提案を行うWEBアプリ。現場の意思決定をデータドリブンに変えることを目的に開発。
         </p>
 
-        <div className="flex flex-col gap-2 text-sm" style={{ color: "#D4C5B0" }}>
+        <div className="flex flex-col gap-2 text-sm" style={{ color: "#4A4440" }}>
           <p>
             <span style={{ color: "#B8864E" }}>主な機能: </span>
             CSVデータ読み込み・ABC分析・AIによる改善提案・チャット形式での相談
@@ -628,12 +697,13 @@ function WorkCard2() {
 
         <p
           className="text-xs"
-          style={{ fontFamily: "'DM Mono', monospace", color: "#8A8178" }}
+          style={{ fontFamily: "'DM Mono', monospace", color: "#6B6158" }}
         >
           Python / Streamlit / OpenAI API（GPT-4o）/ RAG構成
         </p>
       </div>
     </div>
+    </>
   );
 }
 
@@ -646,12 +716,11 @@ function WorkCard3() {
       ref={ref}
       className="fade-in transition-all duration-300"
       style={{
-        background: "rgba(5,12,28,0.58)",
-        backdropFilter: "blur(10px)",
+        background: "white",
         border: "1px solid rgba(184,134,78,0.15)",
         borderRadius: "4px",
         transform: hovered ? "translateY(-4px)" : "none",
-        boxShadow: hovered ? "0 8px 32px rgba(184,134,78,0.08)" : "none",
+        boxShadow: hovered ? "0 8px 32px rgba(184,134,78,0.12)" : "0 2px 12px rgba(0,0,0,0.06)",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -667,9 +736,7 @@ function WorkCard3() {
           allow="clipboard-write; clipboard-read"
           sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
         />
-        <div
-          className="absolute top-3 right-3"
-        >
+        <div className="absolute top-3 right-3">
           <a
             href="https://lp-generator-rkatetxhs6qghvbffmqfgn.streamlit.app/"
             target="_blank"
@@ -677,7 +744,7 @@ function WorkCard3() {
             className="inline-flex items-center gap-1 px-3 py-1.5 text-xs tracking-widest transition-all duration-200"
             style={{
               fontFamily: "'DM Mono', monospace",
-              background: "rgba(10,9,8,0.85)",
+              background: "rgba(255,255,255,0.92)",
               border: "1px solid rgba(184,134,78,0.5)",
               color: "#B8864E",
               borderRadius: "2px",
@@ -688,7 +755,7 @@ function WorkCard3() {
               e.currentTarget.style.color = "#0A0908";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(10,9,8,0.85)";
+              e.currentTarget.style.background = "rgba(255,255,255,0.92)";
               e.currentTarget.style.color = "#B8864E";
             }}
           >
@@ -706,7 +773,7 @@ function WorkCard3() {
               className="text-xs px-2 py-1 tracking-widest"
               style={{
                 fontFamily: "'DM Mono', monospace",
-                background: "rgba(184,134,78,0.1)",
+                background: "rgba(184,134,78,0.08)",
                 border: "1px solid rgba(184,134,78,0.3)",
                 color: "#B8864E",
                 borderRadius: "2px",
@@ -722,7 +789,7 @@ function WorkCard3() {
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "1.6rem",
             fontWeight: 400,
-            color: "#F0EBE3",
+            color: "#1C1916",
           }}
         >
           商品情報を入力するだけで LP・コピー・画像を
@@ -730,14 +797,14 @@ function WorkCard3() {
           一括生成するツール
         </h3>
 
-        <p className="text-sm leading-relaxed" style={{ color: "#8A8178" }}>
+        <p className="text-sm leading-relaxed" style={{ color: "#6B6158" }}>
           商品名・特徴・ターゲット・価格を入力するだけで、キャッチコピー・リード文・商品画像・LP HTMLを自動生成するWebアプリ。↑上のフォームで今すぐ試せます。
         </p>
 
-        <div className="grid sm:grid-cols-2 gap-4 text-sm" style={{ color: "#D4C5B0" }}>
+        <div className="grid sm:grid-cols-2 gap-4 text-sm">
           <div>
             <p style={{ color: "#B8864E", marginBottom: "4px" }}>主な機能</p>
-            <p style={{ color: "#8A8178" }}>
+            <p style={{ color: "#6B6158" }}>
               キャッチコピー3パターン生成・リード文自動生成・gpt-image-1による商品画像生成・LP HTMLダウンロード
             </p>
           </div>
@@ -746,7 +813,7 @@ function WorkCard3() {
             <p
               style={{
                 fontFamily: "'DM Mono', monospace",
-                color: "#8A8178",
+                color: "#6B6158",
                 fontSize: "0.75rem",
               }}
             >
@@ -781,6 +848,110 @@ function Works() {
   );
 }
 
+/* ─── About ─── */
+function About() {
+  const ref = useFadeIn();
+
+  return (
+    <section id="profile" style={{ background: "transparent" }}>
+      <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
+        <div ref={ref} className="fade-in flex flex-col gap-12">
+          <h2 className="section-heading">
+            Pro<span>file</span>
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            {/* Text */}
+            <div className="flex flex-col gap-6">
+              <div
+                className="flex flex-col gap-4 leading-relaxed"
+                style={{ fontSize: "0.95rem" }}
+              >
+                <p style={{ color: "#1C1916" }}>
+                  岐阜県岐阜市で石窯パン工房Demainを2012年より経営。
+                </p>
+                <p style={{ color: "#4A4440" }}>
+                  現場経営者として
+                  「現場で本当に使えるAIツール」を自分の手で作ることを決意。
+                </p>
+                <p style={{ color: "#4A4440" }}>
+                  DMM生成AIエンジニアコース及びRootAIスクールでAIについて学び、
+                  RAGシステム・LP制作・画像生成・業務自動化ツールをメインに
+                  AIフリーランスとして活動開始。
+                </p>
+                <p
+                  className="pt-2 text-sm tracking-wide"
+                  style={{
+                    fontFamily: "'DM Mono', monospace",
+                    color: "#B8864E",
+                    borderLeft: "2px solid #B8864E",
+                    paddingLeft: "1rem",
+                  }}
+                >
+                  「技術と現場の両方を知っている」ことが最大の強みです。
+                </p>
+              </div>
+            </div>
+
+            {/* Photo + Badge */}
+            <div className="flex flex-col items-center gap-6">
+              {/* Profile Photo */}
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  width: "min(260px, 80vw)",
+                  aspectRatio: "3/4",
+                  borderRadius: "4px",
+                }}
+              >
+                <Image
+                  src="/portfolio_profile.png"
+                  alt="Ayumu Ota"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+
+              {/* Badge */}
+              <a
+                href="https://www.openbadge-global.com/ns/portal/openbadge/public/assertions/unAcquired/anMvM3NKUnBWTkl3NmttWWdNdkcvdz09"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block transition-all duration-300"
+                style={{ width: "min(180px, 60vw)" }}
+              >
+                <div
+                  className="overflow-hidden transition-all duration-300"
+                  style={{ borderRadius: "8px", border: "1px solid rgba(184,134,78,0.2)" }}
+                >
+                  <Image
+                    src="/openbadge.jpg"
+                    alt="DMM 生成AIエンジニアスクール修了バッジ"
+                    width={180}
+                    height={180}
+                    className="w-full h-auto object-cover transition-all duration-300 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
+                    style={{ boxShadow: "0 0 30px rgba(184,134,78,0.3)" }}
+                  />
+                </div>
+              </a>
+              <p
+                className="text-center text-sm"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#6B6158" }}
+              >
+                DMM 生成AIエンジニアスクール修了
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="gold-divider" />
+    </section>
+  );
+}
+
 /* ─── Contact ─── */
 function Contact() {
   const ref = useFadeIn();
@@ -796,13 +967,13 @@ function Contact() {
           <div
             className="w-full flex flex-col gap-6 items-center p-10"
             style={{
-              background: "rgba(5,12,28,0.58)",
-              backdropFilter: "blur(10px)",
+              background: "white",
               border: "1px solid rgba(184,134,78,0.2)",
               borderRadius: "4px",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
             }}
           >
-            <p className="leading-relaxed" style={{ color: "#D4C5B0" }}>
+            <p className="leading-relaxed" style={{ color: "#4A4440" }}>
               RAGシステム・業務自動化ツール・LP生成ツールの
               <br />
               開発依頼・ご相談はお気軽にどうぞ。
@@ -845,11 +1016,11 @@ function Contact() {
 /* ─── Footer ─── */
 function Footer() {
   return (
-    <footer style={{ background: "#0F0E0C", borderTop: "1px solid rgba(184,134,78,0.15)" }}>
+    <footer style={{ background: "#F0EAE0", borderTop: "1px solid rgba(184,134,78,0.2)" }}>
       <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p
           className="text-xs"
-          style={{ fontFamily: "'DM Mono', monospace", color: "#8A8178" }}
+          style={{ fontFamily: "'DM Mono', monospace", color: "#6B6158" }}
         >
           © 2025 Ayumu Ota. All rights reserved.
         </p>
@@ -859,10 +1030,10 @@ function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="transition-colors duration-200"
-          style={{ color: "#8A8178" }}
+          style={{ color: "#6B6158" }}
           aria-label="GitHub"
           onMouseEnter={(e) => (e.currentTarget.style.color = "#B8864E")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8178")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "#6B6158")}
         >
           <svg
             width="20"
@@ -886,9 +1057,9 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
         <Skills />
         <Works />
+        <About />
         <Contact />
       </main>
       <Footer />

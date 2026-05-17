@@ -5,15 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
 :root {
-  --color-base: #030A14;
-  --color-surface: rgba(5, 12, 25, 0.62);
-  --color-surface-alt: rgba(8, 18, 38, 0.55);
-  --color-nav: rgba(3, 10, 20, 0.92);
+  --color-base: #FAF7F2;
+  --color-surface: rgba(255, 255, 255, 0.92);
+  --color-surface-alt: rgba(250, 247, 242, 0.95);
+  --color-nav: rgba(255, 255, 255, 0.95);
   --color-accent1: #B8864E;
-  --color-accent2: #D4C5B0;
-  --color-text-primary: #F0EBE3;
-  --color-text-secondary: #8A8178;
-  --color-border: rgba(184, 134, 78, 0.2);
+  --color-accent2: #8A6B3A;
+  --color-text-primary: #1C1916;
+  --color-text-secondary: #6B6158;
+  --color-border: rgba(184, 134, 78, 0.25);
 }
 
 * {
@@ -24,17 +24,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: linear-gradient(
-    to bottom,
-    #030A14 0%,
-    #07152A 18%,
-    #0D2244 36%,
-    #163860 52%,
-    #1E4F7E 68%,
-    #27669C 82%,
-    #3A82B8 92%,
-    #5AA0CC 100%
-  );
+  background: #FAF7F2;
   min-height: 100%;
 }
 
@@ -44,17 +34,6 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Subtle noise texture overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.35;
 }
 
 /* Scroll fade-in animation */
@@ -73,7 +52,7 @@ body::before {
 .gold-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-accent1), transparent);
-  opacity: 0.35;
+  opacity: 0.45;
 }
 
 /* Section heading style */
@@ -95,7 +74,7 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: #030A14;
+  background: #F0EAE0;
 }
 
 ::-webkit-scrollbar-thumb {

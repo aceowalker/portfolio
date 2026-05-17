@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: "#0A0908",
-        surface: "#141210",
-        "surface-alt": "#1A1814",
-        "nav-bg": "#0F0E0C",
+        base: "#FAF7F2",
+        surface: "#FFFFFF",
+        "surface-alt": "#F5EEE4",
+        "nav-bg": "#FFFFFF",
         accent1: "#B8864E",
-        accent2: "#D4C5B0",
-        "text-primary": "#F0EBE3",
-        "text-secondary": "#8A8178",
+        accent2: "#8A6B3A",
+        "text-primary": "#1C1916",
+        "text-secondary": "#6B6158",
       },
       fontFamily: {
         cormorant: ["Cormorant Garamond", "serif"],
