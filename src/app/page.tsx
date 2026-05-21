@@ -598,6 +598,7 @@ function WorkCard2() {
           playsInline
           className="w-full"
           style={{ display: "block", maxHeight: "70vh", background: "#F0EAE0" }}
+          onLoadedMetadata={(e) => { (e.target as HTMLVideoElement).playbackRate = 2; }}
         />
       </div>
 
